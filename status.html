@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#08090a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Schramm AI">
+<meta name="description" content="Live health and progress for the Schramm AI sales system.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Schramm AI</title>
+<style>
+:root{--bg:#08090a;--panel:#0f1011;--raised:#17181a;--text:#f7f8f8;--muted:#8a8f98;--line:rgba(255,255,255,.08);--violet:#7170ff;--green:#34c77b;--amber:#f0b95b;--red:#f07575}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;min-height:100vh;background:radial-gradient(900px 540px at 72% -15%,rgba(113,112,255,.13),transparent 58%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;font-feature-settings:"cv01","ss03";-webkit-font-smoothing:antialiased}
+.shell{width:100%;max-width:1040px;margin:auto;padding:max(28px,env(safe-area-inset-top)) 24px max(44px,env(safe-area-inset-bottom))}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:52px}.wordmark{font-size:14px;font-weight:600;letter-spacing:.11em;text-transform:uppercase}.updated{color:var(--muted);font-size:12px}
+.status{position:relative;padding:36px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.34)}
+.status:after{content:"";position:absolute;right:-120px;top:-180px;width:360px;height:360px;border-radius:50%;background:rgba(113,112,255,.09);filter:blur(4px);pointer-events:none}.badge{position:relative;z-index:1;display:inline-flex;align-items:center;gap:9px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.025);color:#d0d6e0;font-size:12px;font-weight:500}.pulse{width:7px;height:7px;border-radius:50%;background:var(--amber);box-shadow:0 0 0 4px rgba(240,185,91,.10)}.live .pulse{background:var(--green);box-shadow:0 0 0 4px rgba(52,199,123,.10)}.alert .pulse{background:var(--red)}
+h1{position:relative;z-index:1;margin:28px 0 10px;font-size:clamp(38px,6vw,62px);font-weight:500;letter-spacing:-.055em;line-height:.98}.lede{position:relative;z-index:1;margin:0;max-width:650px;color:#aeb3bd;font-size:16px;line-height:1.65}
+.metrics{display:flex;gap:12px;margin:16px 0}.metric{flex:1;min-width:0;padding:22px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.025)}.metric strong{display:block;font-size:30px;font-weight:500;letter-spacing:-.04em}.metric span{display:block;margin-top:6px;color:var(--muted);font-size:12px}
+.lower{display:flex;gap:16px}.panel{flex:1;min-width:0;padding:24px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.018)}.panel:last-child{flex:1.15}h2{margin:0 0 18px;font-size:14px;font-weight:600;letter-spacing:-.01em}.check{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-top:1px solid var(--line);font-size:13px}.check span{color:var(--muted)}.check strong{font-weight:500;text-align:right}.good{color:var(--green)}
+ul{list-style:none;padding:0;margin:0}li{position:relative;display:grid;grid-template-columns:10px 1fr;gap:12px;padding:13px 0;border-top:1px solid var(--line)}.activity-dot{width:7px;height:7px;margin-top:6px;border-radius:50%;background:var(--violet);box-shadow:0 0 0 4px rgba(113,112,255,.09)}.activity-dot.quiet{background:#62666d}li strong{font-size:13px;font-weight:500}li p{margin:3px 0;color:var(--muted);font-size:12px;line-height:1.5}time{display:block;color:#62666d;font-size:10px}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:22px;color:#62666d;font-size:11px}button{appearance:none;border:0;background:none;color:#8f94ff;font:inherit;font-size:11px;cursor:pointer;padding:8px 0}dialog{width:min(430px,calc(100% - 32px));border:1px solid var(--line);border-radius:16px;background:#151618;color:var(--text);padding:24px;box-shadow:0 30px 100px #000}dialog::backdrop{background:rgba(0,0,0,.68);backdrop-filter:blur(5px)}dialog h3{margin:0 0 12px;font-size:19px;font-weight:500}dialog p{color:#aeb3bd;font-size:14px;line-height:1.6}.close{display:block;margin-left:auto;padding:9px 14px;border-radius:7px;background:#5e6ad2;color:white;font-size:13px}
+@media(max-width:700px){.shell{padding-left:16px;padding-right:16px}.topbar{margin-bottom:28px}.updated{display:none}.status{padding:28px 22px}h1{font-size:42px}.metrics{flex-wrap:wrap}.metric{flex:1 1 42%;padding:18px}.lower{flex-direction:column}.foot{align-items:flex-start;flex-direction:column;gap:4px}}
+@media(max-width:380px){h1{font-size:36px}.lede{font-size:14px}}
+@media(prefers-reduced-motion:no-preference){.pulse{animation:breathe 2.8s ease-in-out infinite}@keyframes breathe{50%{opacity:.55;transform:scale(.9)}}}
+</style>
+</head>
+<body class="shadow" data-last-wake="2026-07-16T00:25:27.855994-04:00">
+<main class="shell">
+<header class="topbar"><div class="wordmark">Schramm AI</div><div class="updated">Last checked <span id="last-check">2026-07-16 00:25 EST</span></div></header>
+<section class="status"><div class="badge"><span class="pulse"></span><span id="status-label">Shadow mode</span></div><h1 id="headline">Learning the motion.</h1><p class="lede" id="lede">Research is running. Outreach is still off.</p></section>
+<section class="metrics"><article class="metric"><strong>0</strong><span>Started today</span></article><article class="metric"><strong>0</strong><span>Conversations</span></article><article class="metric"><strong>0</strong><span>Replies today</span></article><article class="metric"><strong>0</strong><span>Calls for you</span></article></section>
+<section class="lower">
+<article class="panel"><h2>System</h2><div class="check"><span>Worker</span><strong class="good" id="worker-state">Running</strong></div><div class="check"><span>Public page</span><strong class="good">Synced</strong></div><div class="check"><span>Last check</span><strong>2026-07-16 00:25 EST</strong></div><div class="check"><span>Last result</span><strong>Nothing needed right now</strong></div></article>
+<article class="panel"><h2>Recent activity</h2><ul><li><span class="activity-dot"></span><div><strong>Prospect checked</strong><p>Added a new prospect to the queue.</p><time>2026-07-15 23:42 EST</time></div></li><li><span class="activity-dot"></span><div><strong>Prospect checked</strong><p>Added a new prospect to the queue.</p><time>2026-07-15 23:34 EST</time></div></li></ul></article>
+</section>
+<footer class="foot"><span>Lead details stay private. You will hear from the system when a call is worth taking.</span><button type="button" onclick="document.querySelector('dialog').showModal()">Save to Home Screen</button></footer>
+</main>
+<dialog><h3>Keep it on your Home Screen</h3><p>On iPhone, open this page in Safari, tap the Share button, then choose <strong>Add to Home Screen</strong>. It opens like an app and refreshes itself.</p><button class="close" onclick="this.closest('dialog').close()">Done</button></dialog>
+<script>
+if('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+setTimeout(()=>location.reload(),300000);
+(function(){
+ const iso=document.body.dataset.lastWake;if(!iso)return;
+ const last=new Date(iso);if(Number.isNaN(last.getTime()))return;
+ const parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/New_York',weekday:'short',hour:'numeric',hour12:false}).formatToParts(new Date());
+ const val=Object.fromEntries(parts.map(p=>[p.type,p.value]));const workday=!['Sat','Sun'].includes(val.weekday);const hour=Number(val.hour);const business=workday&&hour>=8&&hour<18;
+ const stale=Date.now()-last.getTime()>20*60*1000;
+ if(business&&stale){document.body.className='alert';document.getElementById('status-label').textContent='Check delayed';document.getElementById('headline').textContent='The worker looks quiet.';document.getElementById('lede').textContent='The last check is older than expected. Outreach is paused until the loop catches up.';document.getElementById('worker-state').textContent='Delayed';document.getElementById('worker-state').className='';}
+})();
+</script>
+</body></html>
